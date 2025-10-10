@@ -1,0 +1,441 @@
+import React, { useEffect, useState } from "react";
+
+// Default export is MakerApp so canvas preview works
+export default function MakerApp() {
+  return (
+    <div className="min-h-screen bg-slate-50 p-6">
+      <div className="max-w-6xl mx-auto">
+        <header className="mb-6">
+          <h1 className="text-3xl font-bold">Loan Origination — Maker Dashboard</h1>
+          <p className="text-sm text-slate-600">Review customer submissions, documents and forward to Checker or Reject.</p>
+        </header>
+
+        <Maker />
+      </div>
+    </div>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/* --------------------------- Mock API / Fake DB --------------------------- */
+/* -------------------------------------------------------------------------- */
+
+// Fake in-memory DB
+const FAKE_DB = {
+  loans: [
+    {
+      id: "L001",
+      customer: {
+        name: "Ravi Kumar",
+        email: "ravi.kumar@example.com",
+        phone: "+91 98765 43210",
+      },
+      type: "home",
+      amount: 5000000,
+      status: "submitted", // submitted, under_review, sent_to_checker, rejected, approved
+      submittedAt: "2025-10-01",
+      documents: {
+        aadhar: { url: "/fake/aadhar-ravi.pdf", verified: null },
+        passport: { url: "/fake/passport-ravi.pdf", verified: null },
+        employment: { url: "/fake/employment-ravi.pdf", verified: null },
+        education: { url: "/fake/education-ravi.pdf", verified: null },
+      },
+      cibil: null,
+      notes: [],
+    },
+    {
+      id: "L002",
+      customer: {
+        name: "Sneha Gupta",
+        email: "sneha.g@example.com",
+        phone: "+91 90000 11111",
+      },
+      type: "personal",
+      amount: 200000,
+      status: "submitted",
+      submittedAt: "2025-09-28",
+      documents: {
+        aadhar: { url: "/fake/aadhar-sneha.pdf", verified: null },
+        passport: { url: "/fake/passport-sneha.pdf", verified: null },
+        employment: { url: "/fake/employment-sneha.pdf", verified: null },
+        education: { url: "/fake/education-sneha.pdf", verified: null },
+      },
+      cibil: null,
+      notes: [],
+    },
+  ],
+};
+
+// Fake API service
+const Api = {
+  fetchLoans: () =>
+    new Promise((res) => setTimeout(() => res(JSON.parse(JSON.stringify(FAKE_DB.loans))), 400)),
+
+  fetchLoanById: (id) =>
+    new Promise((res, rej) => {
+      setTimeout(() => {
+        const loan = FAKE_DB.loans.find((l) => l.id === id);
+        if (!loan) return rej(new Error("Loan not found"));
+        res(JSON.parse(JSON.stringify(loan)));
+      }, 300);
+    }),
+
+  updateLoan: (id, updates) =>
+    new Promise((res, rej) => {
+      setTimeout(() => {
+        const idx = FAKE_DB.loans.findIndex((l) => l.id === id);
+        if (idx === -1) return rej(new Error("Loan not found"));
+        FAKE_DB.loans[idx] = { ...FAKE_DB.loans[idx], ...updates };
+        res(JSON.parse(JSON.stringify(FAKE_DB.loans[idx])));
+      }, 300);
+    }),
+
+  addNote: (id, note) =>
+    new Promise((res, rej) => {
+      setTimeout(() => {
+        const loan = FAKE_DB.loans.find((l) => l.id === id);
+        if (!loan) return rej(new Error("Loan not found"));
+        loan.notes.push(note);
+        res(JSON.parse(JSON.stringify(loan)));
+      }, 200);
+    }),
+
+  sendMessageToCustomer: (loanId, message) =>
+    new Promise((res) => setTimeout(() => res({ ok: true, loanId, message }), 250)),
+
+  sendToChecker: (loanId, meta) =>
+    new Promise((res) => setTimeout(() => res({ ok: true, loanId, meta }), 250)),
+};
+
+/* -------------------------------------------------------------------------- */
+/* ------------------------------- Utilities -------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+function formatCurrency(n) {
+  return n.toLocaleString("en-IN", { style: "currency", currency: "INR" });
+}
+
+// Simple fake CIBIL calculator — deterministic for demo
+function calculateCibil({ employmentYears = 0, outstanding = 0, income = 0, educationLevel = "graduate" }) {
+  // Score between 300 and 900
+  let score = 300;
+  score += Math.min(200, employmentYears * 10);
+  score += Math.max(0, Math.min(200, (income / 50000) * 10));
+  score -= Math.max(0, Math.min(150, outstanding / 50000));
+  if (educationLevel === "postgraduate") score += 30;
+  if (educationLevel === "highschool") score -= 20;
+  return Math.round(Math.min(900, Math.max(300, score)));
+}
+
+/* -------------------------------------------------------------------------- */
+/* --------------------------- Maker Dashboard UI --------------------------- */
+/* -------------------------------------------------------------------------- */
+
+function Maker() {
+  const [loans, setLoans] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedLoanId, setSelectedLoanId] = useState(null);
+
+  useEffect(() => {
+    setLoading(true);
+    Api.fetchLoans()
+      .then((data) => setLoans(data))
+      .finally(() => setLoading(false));
+  }, []);
+
+  function refreshLoan(id) {
+    Api.fetchLoanById(id).then((updated) => {
+      setLoans((prev) => prev.map((l) => (l.id === id ? updated : l)));
+    });
+  }
+
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="lg:col-span-1">
+        <div className="bg-white p-4 rounded-2xl shadow-sm">
+          <h2 className="font-semibold text-lg">All Submitted Loans</h2>
+          {loading ? (
+            <p className="text-sm text-slate-500">Loading...</p>
+          ) : (
+            <ul className="mt-3 space-y-3">
+              {loans.map((loan) => (
+                <li
+                  key={loan.id}
+                  className={`p-3 rounded-lg border flex justify-between items-center cursor-pointer hover:shadow-md ${
+                    selectedLoanId === loan.id ? "ring-2 ring-indigo-300" : ""
+                  }`}
+                  onClick={() => setSelectedLoanId(loan.id)}
+                >
+                  <div>
+                    <div className="text-sm font-medium">{loan.customer.name}</div>
+                    <div className="text-xs text-slate-500">{loan.type} loan • {formatCurrency(loan.amount)}</div>
+                  </div>
+                  <div className="text-xs text-slate-600">{loan.status}</div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
+        <div className="mt-4 text-xs text-slate-500">
+          Tip: Click a loan to review documents and calculate CIBIL.
+        </div>
+      </div>
+
+      <div className="lg:col-span-2">
+        <div className="bg-white p-4 rounded-2xl shadow-sm min-h-[360px]">
+          {selectedLoanId ? (
+            <LoanReviewPanel loanId={selectedLoanId} onLoanUpdated={refreshLoan} />
+          ) : (
+            <div className="h-full flex items-center justify-center text-slate-400">
+              Select a loan to review
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/* ---------------------------- Loan Review Panel --------------------------- */
+/* -------------------------------------------------------------------------- */
+
+function LoanReviewPanel({ loanId, onLoanUpdated }) {
+  const [loan, setLoan] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [calcInputs, setCalcInputs] = useState({ employmentYears: 2, outstanding: 0, income: 30000, educationLevel: "graduate" });
+  const [messageToCustomer, setMessageToCustomer] = useState("");
+  const [processing, setProcessing] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    Api.fetchLoanById(loanId)
+      .then((data) => setLoan(data))
+      .finally(() => setLoading(false));
+  }, [loanId]);
+
+  function handleCalculateCibil() {
+    const score = calculateCibil(calcInputs);
+    setLoan((l) => ({ ...l, cibil: score }));
+    Api.updateLoan(loanId, { cibil: score }).then((updated) => {
+      setLoan(updated);
+      onLoanUpdated(loanId);
+    });
+  }
+
+  function handleReject(reason) {
+    setProcessing(true);
+    Api.updateLoan(loanId, { status: "rejected" })
+      .then(() => Api.sendMessageToCustomer(loanId, `Your loan ${loanId} has been rejected: ${reason}`))
+      .then(() => Api.addNote(loanId, { by: "maker", text: `Rejected: ${reason}`, at: new Date().toISOString() }))
+      .then(() => Api.fetchLoanById(loanId))
+      .then((updated) => {
+        setLoan(updated);
+        onLoanUpdated(loanId);
+      })
+      .finally(() => setProcessing(false));
+  }
+
+  function handleSendToChecker() {
+    setProcessing(true);
+    Api.updateLoan(loanId, { status: "sent_to_checker" })
+      .then(() => Api.sendToChecker(loanId, { from: "maker", at: new Date().toISOString() }))
+      .then(() => Api.addNote(loanId, { by: "maker", text: `Sent to checker`, at: new Date().toISOString() }))
+      .then(() => Api.fetchLoanById(loanId))
+      .then((updated) => {
+        setLoan(updated);
+        onLoanUpdated(loanId);
+      })
+      .finally(() => setProcessing(false));
+  }
+
+  function markDocument(doctype, ok) {
+    const updated = { ...loan };
+    updated.documents = { ...updated.documents, [doctype]: { ...updated.documents[doctype], verified: ok } };
+    setLoan(updated);
+    Api.updateLoan(loanId, { documents: updated.documents }).then(() => onLoanUpdated(loanId));
+  }
+
+  if (loading || !loan) return <div className="text-sm text-slate-500">Loading loan...</div>;
+
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div className="lg:col-span-2">
+        <div className="flex items-start justify-between">
+          <div>
+            <h3 className="text-xl font-semibold">{loan.customer.name} — {loan.type} loan</h3>
+            <div className="text-sm text-slate-500">Loan ID: {loan.id} • Submitted: {loan.submittedAt}</div>
+          </div>
+
+          <div className="text-right">
+            <div className="text-sm">Status</div>
+            <div className="font-medium">{loan.status}</div>
+          </div>
+        </div>
+
+        <div className="mt-4 bg-slate-50 p-3 rounded-lg">
+          <div className="flex gap-4">
+            <div>
+              <div className="text-xs text-slate-500">Amount</div>
+              <div className="font-medium">{formatCurrency(loan.amount)}</div>
+            </div>
+
+            <div>
+              <div className="text-xs text-slate-500">CIBIL Score</div>
+              <div className="font-medium">{loan.cibil ?? "Not calculated"}</div>
+            </div>
+
+            <div>
+              <div className="text-xs text-slate-500">Contact</div>
+              <div className="font-medium">{loan.customer.phone}</div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-4">
+          <h4 className="font-semibold">Documents</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+            {Object.entries(loan.documents).map(([key, doc]) => (
+              <div key={key} className="p-3 border rounded-lg bg-white">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="capitalize font-medium">{key}</div>
+                    <div className="text-xs text-slate-500">{doc.url}</div>
+                  </div>
+                  <div className="flex gap-2">
+                    <button
+                      className="px-2 py-1 text-xs rounded bg-slate-100"
+                      onClick={() => window.open(doc.url, "_blank")}
+                    >
+                      View
+                    </button>
+                    <button
+                      className={`px-2 py-1 text-xs rounded ${doc.verified === true ? "bg-green-100" : "bg-slate-100"}`}
+                      onClick={() => markDocument(key, true)}
+                    >
+                      OK
+                    </button>
+                    <button
+                      className={`px-2 py-1 text-xs rounded ${doc.verified === false ? "bg-red-100" : "bg-slate-100"}`}
+                      onClick={() => markDocument(key, false)}
+                    >
+                      Not OK
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-4">
+          <h4 className="font-semibold">Actions</h4>
+          <div className="flex gap-2 items-center mt-2">
+            <button
+              className="px-4 py-2 rounded-2xl bg-red-50 border border-red-200 text-red-700 text-sm"
+              disabled={processing}
+              onClick={() => {
+                const reason = prompt("Enter rejection reason to send to customer:");
+                if (reason) handleReject(reason);
+              }}
+            >
+              Reject and notify customer
+            </button>
+
+            <button
+              className="px-4 py-2 rounded-2xl bg-indigo-600 text-white text-sm"
+              disabled={processing}
+              onClick={handleSendToChecker}
+            >
+              Send to Checker
+            </button>
+
+            <button
+              className="px-4 py-2 rounded-2xl bg-slate-100 text-sm"
+              onClick={() => {
+                const note = prompt("Write a short note for this loan (internal):");
+                if (note) {
+                  Api.addNote(loanId, { by: "maker", text: note, at: new Date().toISOString() }).then(() => Api.fetchLoanById(loanId)).then(setLoan);
+                }
+              }}
+            >
+              Add internal note
+            </button>
+          </div>
+        </div>
+
+        <div className="mt-4">
+          <h4 className="font-semibold">Notes</h4>
+          <div className="mt-2 space-y-2">
+            {loan.notes.length === 0 && <div className="text-sm text-slate-500">No notes yet</div>}
+            {loan.notes.map((n, i) => (
+              <div key={i} className="text-sm border rounded p-2 bg-white">
+                <div className="text-xs text-slate-400">{n.by} • {new Date(n.at).toLocaleString()}</div>
+                <div className="mt-1">{n.text}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <aside className="bg-slate-50 p-3 rounded-lg">
+        <h4 className="font-semibold">Calculate CIBIL</h4>
+        <div className="mt-2 space-y-2">
+          <label className="block text-xs">Employment years</label>
+          <input type="number" className="w-full p-2 rounded border" value={calcInputs.employmentYears} onChange={(e)=> setCalcInputs({...calcInputs, employmentYears: Number(e.target.value)})} />
+
+          <label className="block text-xs">Outstanding debts (INR)</label>
+          <input type="number" className="w-full p-2 rounded border" value={calcInputs.outstanding} onChange={(e)=> setCalcInputs({...calcInputs, outstanding: Number(e.target.value)})} />
+
+          <label className="block text-xs">Monthly income (INR)</label>
+          <input type="number" className="w-full p-2 rounded border" value={calcInputs.income} onChange={(e)=> setCalcInputs({...calcInputs, income: Number(e.target.value)})} />
+
+          <label className="block text-xs">Education level</label>
+          <select className="w-full p-2 rounded border" value={calcInputs.educationLevel} onChange={(e)=> setCalcInputs({...calcInputs, educationLevel: e.target.value})}>
+            <option value="highschool">Highschool</option>
+            <option value="graduate">Graduate</option>
+            <option value="postgraduate">Postgraduate</option>
+          </select>
+
+          <div className="flex gap-2 mt-3">
+            <button className="px-3 py-2 rounded bg-indigo-600 text-white text-sm" onClick={handleCalculateCibil}>Calculate & Save</button>
+            <button className="px-3 py-2 rounded bg-white border text-sm" onClick={() => {
+              setCalcInputs({ employmentYears: 2, outstanding: 0, income: 30000, educationLevel: "graduate" });
+            }}>Reset</button>
+          </div>
+
+          <div className="mt-3 text-sm">
+            Current CIBIL: <span className="font-medium">{loan.cibil ?? "Not calculated"}</span>
+          </div>
+
+          <hr className="my-3" />
+
+          <h5 className="font-semibold">Quick messages</h5>
+          <textarea className="w-full p-2 rounded border mt-2" rows={4} placeholder="Message to customer" value={messageToCustomer} onChange={(e)=> setMessageToCustomer(e.target.value)} />
+          <div className="flex gap-2 mt-2">
+            <button className="px-3 py-2 rounded bg-green-600 text-white text-sm" onClick={() => {
+              if (!messageToCustomer) return alert('Enter a message first');
+              setProcessing(true);
+              Api.sendMessageToCustomer(loanId, messageToCustomer).then(()=>{
+                Api.addNote(loanId, { by: 'maker', text: `Message to customer: ${messageToCustomer}`, at: new Date().toISOString() }).then(()=> Api.fetchLoanById(loanId)).then((updated)=>{ setLoan(updated); onLoanUpdated(loanId); })
+                .finally(()=> setProcessing(false));
+              });
+            }}>Send to Customer</button>
+
+            <button className="px-3 py-2 rounded bg-indigo-500 text-white text-sm" onClick={() => { setMessageToCustomer(`Please see my review of your documents for loan ${loanId}.`);}}>Fill template</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/* ----------------------------- End of file -------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+// Note: This single-file component uses a fake in-memory DB (FAKE_DB) and Api
+// service functions that return Promises. Replace Api.* calls with real
+// endpoints when connecting to a backend. Tailwind classes are used for
+// styling — ensure Tailwind is configured in the consuming project.
