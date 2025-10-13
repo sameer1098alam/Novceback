@@ -1,0 +1,624 @@
+components
+
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../styles/LoanCard.css';
+
+export default function LoanCard({ application }) {
+  const navigate = useNavigate();
+
+  return (
+    <div className="loan-card">
+      <div className="loan-header">
+        <h3>{application.customerName}</h3>
+        <span className="status">Pending Review</span>
+      </div>
+
+      <p>Application No: {application.appNo}</p>
+      <p>Date: {application.date}</p>
+
+      <div className="loan-info">
+        <p><b>Loan Type:</b> {application.loanType}</p>
+        <p><b>Loan Amount:</b> ₹{application.amount}</p>
+        <p><b>Duration:</b> {application.duration} months</p>
+      </div>
+
+      <div className="cibil-section">
+        <b>CIBIL Score:</b> <span className="score">{application.cibil}</span>
+      </div>
+
+      <button className="review-btn" onClick={() => navigate(`/review/${application.id}`)}>
+        Review Application
+      </button>
+    </div>
+  );
+}
+
+
+import React from 'react';
+import { Link } from 'react-router-dom';
+import '../styles/Navbar.css';
+
+export default function Navbar() {
+  return (
+    <nav className="navbar">
+      <div className="nav-left">
+        <h2>Loan Origination System</h2>
+        <p>Maker Portal</p>
+      </div>
+      <div className="nav-right">
+        <Link to="/">Dashboard</Link>
+        <Link to="/applications">Applications</Link>
+        <div className="profile">
+          <span className="user-icon">👤</span>
+          <span>Maker User</span>
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+
+
+
+import React from 'react';
+import '../styles/SummaryCards.css';
+
+export default function SummaryCards({ stats }) {
+  const { pending, checker, approved, rejected } = stats;
+
+  return (
+    <div className="summary-container">
+      <div className="card yellow">Pending Review <span>{pending}</span></div>
+      <div className="card blue">With Checker <span>{checker}</span></div>
+      <div className="card green">Approved <span>{approved}</span></div>
+      <div className="card red">Rejected <span>{rejected}</span></div>
+    </div>
+  );
+}
+
+
+
+data
+
+
+
+const applications = [
+  {
+    id: 1,
+    customerName: 'Rajesh Kumar',
+    appNo: 'LA2025001',
+    date: '10 Oct 2025',
+    loanType: 'Home Loan',
+    amount: '5000000',
+    duration: 240,
+    cibil: 785,
+    email: 'rajesh.kumar@email.com',
+    phone: '+91 9876543210',
+    address: 'Bangalore, Karnataka',
+    documents: ['Identity Proof', 'Address Proof', 'Photograph', 'Income Docs', 'Sale Agreement']
+  },
+  {
+    id: 2,
+    customerName: 'Priya Menon',
+    appNo: 'LA2025002',
+    date: '11 Oct 2025',
+    loanType: 'Vehicle Loan',
+    amount: '1200000',
+    duration: 60,
+    cibil: 720,
+    email: 'priya.menon@email.com',
+    phone: '+91 9998887776',
+    address: 'Hyderabad, Telangana',
+    documents: ['Identity Proof', 'Address Proof', 'Bank Statement']
+  },
+  {
+    id: 3,
+    customerName: 'Amit Verma',
+    appNo: 'LA2025003',
+    date: '09 Oct 2025',
+    loanType: 'Personal Loan',
+    amount: '500000',
+    duration: 36,
+    cibil: 690,
+    email: 'amit.verma@email.com',
+    phone: '+91 9876541230',
+    address: 'Delhi',
+    documents: ['Identity Proof', 'Address Proof', 'Income Docs']
+  }
+];
+
+export default applications;
+
+
+
+
+
+pages
+
+
+import React from 'react';
+import applications from '../data/applicationsData';
+import LoanCard from '../components/LoanCard';
+import '../styles/Applications.css';
+
+export default function Applications() {
+  return (
+    <div className="applications">
+      <h2>Loan Applications</h2>
+      {applications.map(app => (
+        <LoanCard key={app.id} application={app} />
+      ))}
+    </div>
+  );
+}
+
+
+
+import React from 'react';
+import SummaryCards from '../components/SummaryCards';
+import '../styles/Dashboard.css';
+
+export default function Dashboard() {
+  const stats = { pending: 3, checker: 0, approved: 0, rejected: 0 };
+  return (
+    <div className="dashboard">
+      <h2>Dashboard Overview</h2>
+      <SummaryCards stats={stats} />
+    </div>
+  );
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import React from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import applications from '../data/applicationsData';
+import '../styles/Review.css';
+
+export default function Review() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const app = applications.find(a => a.id === parseInt(id));
+
+  return (
+    <div className="review-page">
+      <h2>Application Review - {app.appNo}</h2>
+      <div className="review-container">
+        <div className="left">
+          <h3>Customer Overview</h3>
+          <p><b>Name:</b> {app.customerName}</p>
+          <p><b>Email:</b> {app.email}</p>
+          <p><b>Phone:</b> {app.phone}</p>
+          <p><b>Address:</b> {app.address}</p>
+
+          <h3>Documents Checklist</h3>
+          <ul>
+            {app.documents.map((d, i) => (
+              <li key={i}>✅ {d}</li>
+            ))}
+          </ul>
+
+          <textarea placeholder="Enter review comments..." />
+          <div className="actions">
+            <button className="approve" onClick={() => navigate('/applications')}>Approve & Send to Checker</button>
+            <button className="reject" onClick={() => navigate('/applications')}>Reject Application</button>
+          </div>
+        </div>
+
+        <div className="right">
+          <div className="cibil-box">
+            <h3>CIBIL Score</h3>
+            <span className="score">{app.cibil}</span>
+          </div>
+
+          <div className="summary">
+            <h3>Application Summary</h3>
+            <p><b>Loan Type:</b> {app.loanType}</p>
+            <p><b>Amount:</b> ₹{app.amount}</p>
+            <p><b>Duration:</b> {app.duration} months</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+
+
+
+styles
+
+
+
+Applications.css
+
+
+.applications {
+  padding: 20px;
+}
+
+.applications h2 {
+  margin-left: 20px;
+  color: #1e3a8a;
+}
+
+
+
+
+Dashboard.css
+
+.dashboard {
+  padding: 20px;
+}
+
+.dashboard h2 {
+  margin-left: 20px;
+  color: #1e3a8a;
+}
+
+
+
+loancard.css
+
+
+.loan-card {
+  background: #fff;
+  margin: 15px auto;
+  width: 85%;
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+  padding: 20px;
+}
+
+.loan-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status {
+  background: #fde68a;
+  color: #92400e;
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.review-btn {
+  background: #1d4ed8;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.review-btn:hover {
+  background: #2563eb;
+}
+
+
+
+Navbar.css
+.navbar {
+  background: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 25px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.nav-left h2 {
+  color: #1e40af;
+  margin: 0;
+}
+
+.nav-left p {
+  font-size: 12px;
+  color: gray;
+  margin: 0;
+}
+
+.nav-right a {
+  margin: 0 10px;
+  color: #1e3a8a;
+  text-decoration: none;
+}
+
+.nav-right a:hover {
+  text-decoration: underline;
+}
+
+.profile {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 10px;
+}
+
+
+Review.css
+
+.review-page {
+  padding: 20px;
+}
+
+.review-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.left, .right {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+  padding: 20px;
+  width: 48%;
+}
+
+.left textarea {
+  width: 100%;
+  height: 80px;
+  margin-top: 10px;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.approve {
+  background: #16a34a;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.reject {
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cibil-box {
+  text-align: center;
+}
+
+.score {
+  display: block;
+  font-size: 36px;
+  color: #16a34a;
+}
+
+
+summarycards.css
+
+
+.summary-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: 15px 25px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  width: 220px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.card span {
+  font-size: 18px;
+}
+
+.yellow { border-left: 6px solid #facc15; }
+.blue { border-left: 6px solid #3b82f6; }
+.green { border-left: 6px solid #22c55e; }
+.red { border-left: 6px solid #ef4444; }
+
+
+
+
+app.css
+
+body {
+  background-color: #f8fafc;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+}
+
+.app-container {
+  min-height: 100vh;
+}
+
+
+
+
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import SummaryCards from '../components/SummaryCards';
+import LoanCard from '../components/LoanCard';
+import applications from '../data/applicationsData';
+import '../styles/Dashboard.css';
+
+export default function Dashboard() {
+  const stats = { pending: 3, checker: 1, approved: 2, rejected: 1 };
+  const recentApps = applications.slice(0, 3);
+  const navigate = useNavigate();
+
+  return (
+    <div className="dashboard">
+      <div className="dashboard-header">
+        <h2>Welcome Back, Maker!</h2>
+        <p>Here’s an overview of your recent loan activities and application queue.</p>
+      </div>
+
+      <SummaryCards stats={stats} />
+
+      <div className="recent-section">
+        <div className="recent-header">
+          <h3>Recent Loan Applications</h3>
+          <button onClick={() => navigate('/applications')}>View All Applications</button>
+        </div>
+
+        <div className="recent-grid">
+          {recentApps.map((app) => (
+            <LoanCard key={app.id} application={app} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+
+
+.dashboard {
+  padding: 20px 30px;
+  background-color: #f8fafc;
+  min-height: 100vh;
+}
+
+.dashboard-header {
+  background: linear-gradient(90deg, #1e3a8a, #3b82f6);
+  color: white;
+  border-radius: 12px;
+  padding: 25px 30px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.dashboard-header h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.dashboard-header p {
+  margin: 5px 0 0;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* Recent section styling */
+.recent-section {
+  margin-top: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.1);
+  padding: 20px 25px;
+}
+
+.recent-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.recent-header h3 {
+  color: #1e40af;
+  margin: 0;
+}
+
+.recent-header button {
+  background: #1d4ed8;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.recent-header button:hover {
+  background: #2563eb;
+}
+
+.recent-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .recent-grid {
+    gap: 15px;
+  }
+
+  .dashboard-header {
+    text-align: center;
+  }
+}
+
+
+
+
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Dashboard from './pages/Dashboard';
+import Applications from './pages/Applications';
+import Review from './pages/Review';
+import './App.css';
+
+function App() {
+  return (
+    <div className="app-container">
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/applications" element={<Applications />} />
+        <Route path="/review/:id" element={<Review />} />
+      </Routes>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
