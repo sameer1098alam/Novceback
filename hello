@@ -25,3 +25,7 @@ esif.route.config:
       action: process
       processor: helloWorldProcessor
 
+
+--spring.config.location=file:/C:/Users/2033209/Downloads/esif-config/ecoln-common.yml,file:/C:/Users/2033209/Downloads/esif-config/sample-dynamic-config.yml
+
+
