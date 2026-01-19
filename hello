@@ -1,15 +1,27 @@
-Subject: Brief Introduction – Sameer Alam
+# Endpoint Config
+esif.endpoint.config:
+  id: hello.source.endpoint
+  name: hello-source
+  type: source
+  modelType: direct
+  provider: $(hello.provider)
+  instance: default
+  className: String.class
+  format: TEXT
 
-Dear [Recipient's Name],
+# Route Config
+esif.route.config:
+  id: hello-route
+  name: hello-world-route
+  description: Simple ESIF hello world route
+  enabled: true
 
-I am Sameer Alam, a recent B.Tech graduate in Computer Science and Engineering, and I have recently joined Standard Chartered GBS as a Technology Apprentice.
+  source:
+    endpointIds:
+      - hello.source.endpoint
 
-I recently completed an intensive Java Full Stack Development training, where I gained hands-on experience in Java, Spring Boot, React, and SQL, covering both frontend and backend development. During the program, I collaborated on a Loan Origination System, a banking application project that enhanced my skills in teamwork, problem-solving, and end-to-end development.
+  process:
+    - name: hello-world-processor
+      action: process
+      processor: helloWorldProcessor
 
-I am excited to be part of the team and look forward to learning, contributing, and adding value to upcoming projects.
-
-Please find my photo attached below.
-
-Best regards,
-Sameer Alam
-Technology Apprentice | Standard Chartered GBS
