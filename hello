@@ -26,6 +26,11 @@ esif.route.config:
       processor: helloWorldProcessor
 
 
+java -jar esif-hello-demo.jar ^
+--spring.config.location=file:/C:/Users/2033209/Downloads/esif-config/ecoln-common.yml,file:/C:/Users/2033209/Downloads/esif-config/sample-dynamic-config.yml
+
+
+
 --spring.config.location=file:/C:/Users/2033209/Downloads/esif-config/ecoln-common.yml,file:/C:/Users/2033209/Downloads/esif-config/sample-dynamic-config.yml
 
 
