@@ -1,0 +1,148 @@
+Sameer Alam
+
+Coding Hands-on
+
+Question 1
+
+you are given 3 integer n, x, k where n is divisible by k you're task is to construct and arra of size n such that
+
+- the product of each segment of length k in a is equal to x the elements of a fall between 2 and x(2 <= a[i] <= x)
+
+the array a is lexicographically minimal
+
+sameer 109872
+
+define p = 10 ^ 9 + 9
+
+Find the sum of (a[i]^ * p ^ i ) modulo 10 ^ 9 + 7 considering indexing starts from 0
+
+if no answer exist print -1
+
+Input Format
+
+10987alam
+
+10987alam
+
+The first line contains a integer, n, denoting the number of elements that needs to be in a
+
+The second line contains a integer, x, denoting the condition integer.
+
+The third line contains a integer, k, denoting the length of the segment.
+
+Constraints
+
+meer 1098
+
+1 <= n <= 10 ^ 6
+
+meer1098.
+
+1 <= x <= 10 ^ 6
+
+1 <= k <= 10 ^ 6
+
+am
+
+sameer
+
+Sample Test Cases
+
+Case 1
+
+4
+
+sameer
+
+2
+
+3
+
+*
+
+4
+
+%
+
+5
+
+6
+
+W
+
+EHR
+
+T
+
+Y
+
+am
+
+
+Sameer Alam
+
+Coding Hands-on
+
+Question 1
+
+Sample Test Cases
+
+Case 1
+
+Input:
+
+2
+
+2
+
+2
+
+sameer 10987alam
+
+Output:
+
+-1
+
+Explanation:
+
+-1 no way of constructing the array
+
+Jam
+
+Case 2
+
+sameer 1098
+
+Input:
+
+2
+
+2
+
+1
+
+Output:
+
+6
+
+ameer10987alam
+
+Explanation:
+
+[2, 2] is the optimal array
+
+Case 3
+
+Input:
+
+4
+
+10
+
+2
+
+sameer 10987alam
+
+Output:
+
+60
