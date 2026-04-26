@@ -1,0 +1,87 @@
+02 hr 53 min 03 sec
+
+C++
+
+1
+
+2
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+3
+
+4
+
+int solve(int n, int x, int k) {
+
+5
+
+// Write your solution here
+
+6
+
+}
+
+7
+
+8
+
+int main() {
+
+9
+
+10
+
+ios_base::sync_with_stdio(false);
+
+cin.tie(NULL);
+
+11
+
+12
+
+int n; cin >> n;
+
+I
+
+13
+
+int x; cin >> x;
+
+14
+
+int k; cin >> k;
+
+15
+
+1
+
+16
+
+17
+
+18
+
+auto result = solve(n, x, k);
+
+cout << result << endl;
+
+return 0;
+
+19
+
+}
+
+Test case
+
+e 1
+
+Case 2
+
+Case 3
+
+ut
+
+e Console
