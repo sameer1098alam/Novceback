@@ -1,0 +1,188 @@
+D
+
+Coding Hands-on
+
+Question 1
+
+You are given an intervals [i[i], ill, each with value viil
+
+Two intervals are overlapping if they share at least one point I(i) <= r(i) and I(j) <= epsilon(i) Overlapping intervals must be merged into one group transitively.
+
+The value of a group is the sum of its member values
+
+Find the maximum group value across all merged groups
+
+Input Format
+
+The fint line contains a integer, n, denoting the number of the intervals
+
+Each line i of the nibsequent lines (where 0 <= i <= n contains a integer, i
+
+Each ine i of the I subsequent lines (where 0 <= 1 < 0 contains a integer, re
+
+Lach line i of the subsequent lines (where 0 <= i < phi contains a integer, vil
+
+Constraints
+
+1 <= n <= 10 deg * 5
+
+0 <= 10 * 9
+
+Omega <= r[i] <= 10 * 9
+
+I = - v * [i] <= 10 deg * 4
+
+Sample Test Cases
+
+Sample Test Cases
+
+Case 1
+
+Input
+
+2
+
+12
+
+
+
+56
+
+10 10
+
+Output:
+
+20
+
+Explanation:
+
+
+
+Case 2
+
+ Explanation: Two intervals [1.5] and [26] overlap since 1 < 6 and 2 They merge into [16] with sum 10.10 20.
+
+Input:
+
+5 15 25
+
+30 100 50
+
+
+3
+
+110 20
+
+Output:
+
+100
+
+
+
+Explanation:
+
+
+
+Explanation: Three distinct intervals with no overlap.
+
+The maximum group value is single largest interval [10, 15] with a value of 100.
+
+Case 3
+
+Input:
+
+3
+
+
+
+50 50 50
+
+15 10
+
+20 15 12
+Sample Test Cases
+
+Case 1
+
+Input
+
+2
+
+12
+
+
+
+56
+
+10 10
+
+Output:
+
+20
+
+Explanation:
+
+
+
+Case 2
+
+ Explanation: Two intervals [1.5] and [26] overlap since 1 < 6 and 2 They merge into [16] with sum 10.10 20.
+
+Input:
+
+5 15 25
+
+30 100 50
+
+
+3
+
+110 20
+
+Output:
+
+100
+
+
+
+Explanation:
+
+
+
+Explanation: Three distinct intervals with no overlap.
+
+The maximum group value is single largest interval [10, 15] with a value of 100.
+
+Case 3
+
+Input:
+
+3
+
+
+
+50 50 50
+
+15 10
+
+20 15 12
+
+
+
+parent 1111 (range(K))
+
+write your solution here
+
+18
+
+19
+
+tryr
+
+nint(input(3).
+
+list(map(int, Input().split())) 1-list (map(int, Input().split(3))
+
+vlist(map(int, input().split()))
+
+result solve(n, 1, r, v
