@@ -1,0 +1,41 @@
+Import sys
+
+Input sys.stdin.readlim
+
+def volvern: int
+
+cost write your solution here
+
+return a
+
+nint(input())
+
+13
+
+qint(input()) cost-
+
+14
+
+15
+
+ak
+
+16
+
+17
+
+18
+
+19
+
+pass
+
+for in range(n):
+
+line input().split()
+
+cost.append([int(x) for x in line[13]] if line else (3)
+
+result solve(n. q. cost) print(result)
+
+except (EOFError, ValueError):
