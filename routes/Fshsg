@@ -1,0 +1,74 @@
+Job Execution
+
+You are given n jobs that run in parallel on a processor.
+
+Each job i has a required execution time executionTimelil.
+
+The processor runs in operations. In each operation:
+
+You choose one job as the major job.
+
+The major job runs for x seconds.
+
+Every other unfinished job runs for y seconds, where y < x.
+
+A job is considered complete once its total executed time reaches or exceeds its required execution time and it leaves the pool.
+
+You need to find the minimum number of operations needed for all jobs to complete.
+
+Example
+
+Suppose n = 5, executionTime = 13,4,1,7,61.x=4, and y=2.
+
+Output: 3
+
+Explanation:
+
+1. Choose job 4 as the major job:
+
+Reduce the execution time of job 4 by x and other jobs by y.
+
+executionTime becomes [1, 2, -1,3,4
+
+Job 3 completes.
+
+2. Choose job 4 again: executionTime becomes [-1, 0, -,-1, 21. Jobs 1, 2, and 4 complete.
+
+3. Choose job 5: executionTime becomes [-, -21. Job 5 completes.
+
+Constraints
+
+1sn≤ 105
+
+1s executionTimelil ≤ 109
+
+1sy<x<109
+
+
+16 #2. INTEGER X
+
+17
+
+#3. INTEGER Y
+
+18
+
+#
+
+19
+
+def getMinimumOperations (executionTime, x, y):
+
+20
+
+# Write your code here
+
+21
+
+22 >
+
+if
+
+name ==
+
+main
