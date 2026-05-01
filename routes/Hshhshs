@@ -1,0 +1,43 @@
+6
+
+#Submission
+
+pred-model.predict(test_encoded)
+
+submission =pd.DataFrame
+
+'id": test['id'],
+
+'outcome':pred
+
+submission.to_csv('submissions.csv', index=False)
+
+[5]
+
+0.55
+
+Python Ce
+
+NameError
+
+Traceback (most recent call last)
+
+Input In [5], in <cell line: 3>()
+
+1 #Submission
+
+--->
+
+3 pred-model.predict (test_encoded)
+
+4 submission =pd. DataFrame({
+
+5 'id': test['id'],
+
+'outcome':pred 6
+
+73)
+
+9 submission.to_csv('submissions.csv', index=False)
+
+'model' is not defined
