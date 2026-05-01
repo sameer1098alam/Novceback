@@ -1,0 +1,81 @@
+721
+
+# write your code heré
+
+22
+
+if name
+
+23
+
+main:
+
+fptr= open(os.environ['OUTPUT_PATH'], 'w')
+
+24
+
+25
+
+executionTime_count = int(input().strip())
+
+26
+
+executionTime []
+
+27
+
+ion
+
+28
+
+29
+
+for. in range(executionTime_count):
+
+30
+
+31
+
+32
+
+executionTime_item = int(input().strip())
+
+executionTime.append(executionTime_item)
+
+33
+
+34
+
+x = int(input().strip())
+
+35
+
+y = int(input().strip())
+
+36
+
+result = getMinimumOperations(executionTime, x, y)
+
+37
+
+38
+
+39
+
+fptr.write(str(result) + '\n')
+
+40
+
+41
+
+fptr.close()
+
+42
+
+Ln 22, Col 27
+
+Autocomplete
+
+Spaces: 4
+
+Mode: Normal
