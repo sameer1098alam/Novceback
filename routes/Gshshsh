@@ -1,0 +1,474 @@
+submission.ct
+
+Predict Vehicle Sales
+
+achine
+
+1 # If additional packages are needed but are not installed by default, uncomment the last two lines of this cell
+
+model to
+
+#and replace <package list> with a list of additional packages.
+
+# This will ensure the notebook has all the dependencies and works everywhere.
+
+#import sys
+
+ord in
+
+[1]
+
+#!{sys.executable) -m pip install <package list>
+
+ict
+
+D
+
+1 # Libraries
+
+2 import pandas as pd
+
+3 import numpy as np
+
+import sklearn
+
+5
+
+6
+
+pd.set_option("display.max_columns", 101)
+
+7 pd.set_option('display.max_colwidth', 100)
+
+I
+
+[2]
+
+Data Description
+
+Column
+
+id
+
+Des
+
+Unique ID corresponding to the vehicle
+
+price
+
+Price of the vehicle
+
+hine
+
+del to
+
+maintenance_cost
+
+Maintenance cost of the vehicle
+
+num_doors
+
+Number of doors in the vehicle
+
+seating_capacity
+
+Seating capacity of the vehicle
+
+boot space
+
+Boot space in the vehicle
+
+d in
+
+safety level
+
+Safety level of the vehicle
+
+t
+
+outcome
+
+The predicted sales of the vehicle (0 - low, 1 - medium, 2 - high, 3 - Very high)
+
+I 1 # The information d dataset for the training set is already loaded below data pd.read_csv('train.csv') data.head()
+
+[5]
+
+id
+
+price
+
+maintenance_cost
+
+num_doors
+
+seating_capacity
+
+boot space
+
+safety_level
+
+outcome
+
+0
+
+0
+
+med
+
+low
+
+Smore
+
+more
+
+small
+
+med
+
+1
+
+1
+
+1 vhigh
+
+med
+
+5more
+
+more
+
+big
+
+low
+
+0
+
+2 2
+
+high
+
+vhigh
+
+4
+
+3
+
+3
+
+med
+
+low
+
+0
+
+med
+
+vhigh
+
+5more
+
+-14
+
+big
+
+med
+
+1
+
+med
+
+vhigh
+
+3
+
+med
+
+low
+
+0
+
+arning
+
+the
+
+the
+
+predict
+
+ith a row ould ns;
+
+1
+
+11
+
+Machine Learning
+
+Build a machine learning model that can predict the outcome.
+
+The model's performance will be evaluated on the basis of weighted F1 Score.
+
+[]
+
+1
+
+1
+
+
+
+
+SCRIPTION
+
++Code
+
++ Markdown
+
+lesion.cav
+
+Task:
+
+Submit the predictions on the test dataset using your optimized model Submit a CSV file with a header row plus each of the test entries, each on its own line.
+
+learning the te.
+
+The file (submissions.cav)should have exactly 2 columns:
+
+Column
+
+in the
+
+predict
+
+id
+
+Description
+
+Unique ID corresponding to the vehicle
+
+outcome
+
+with a
+
+D
+
+e row
+
+ile
+
+hould
+
+nns:
+
+[4]
+
+The predicted sales of the vehicle (0- low, 1 - medium, 2 - high, 3 - Very high)
+
+1 test pd.read_csv('test.csv')
+
+test.head()
+
+id
+
+price
+
+maintenance_cost
+
+num_doors
+
+seating capacity
+
+boot space
+
+safety_level
+
+0 1380
+
+low
+
+med
+
+5more
+
+2
+
+medium
+
+low
+
+1 1381
+
+med
+
+high
+
+2
+
+4
+
+more
+
+med
+
+low
+
+low
+
+2 1382
+
+low
+
+low
+
+4
+
+small
+
+3
+
+1383
+
+low
+
+vhigh
+
+3
+
+-68
+
+small
+
+med
+
+4
+
+low
+
+low
+
+3
+
+2
+
+med
+
+high
+
+1384
+1
+
+a
+
+W
+
+D
+
+1 #Submission
+
+ld
+
+2
+
+submission_df.to_csv('submissions.csv', index=False)
+
+[]
+
+
+52
+
+2
+
+Files
+
+train.csv
+
+test.csv
+
+sample submission.csv
+
+Problem
+
+Build a machine learning model to predict the 'outcome' attribute.
+
+For each record in the test set (test.csv), predict the value of the 'outcome' variable, Submit a CSV file with a header row and one row per test entry. The file (submissions.csv) should have exactly 2 columns:
+
+id
+
+outcome: 10-low, 1-medium, 2-high, 3-very high)
+
+Evaluation Metric:
+
+The metric used for evaluating the model's performance is the weighted F1 Score.
+
+You can read about this metric here.
+
+Deliverables
+
+well commented Jupyter notebook
+
+'submissions.csv'
+
+The notebook should contain your solution, visualizations, and thought process, Including the top features that go into the model. If required, please generate new features. Make appropriate plots, annotate the notebook with markdowns, and explain the necessary inferences. A person should be able to read your notebook and understand the steps you take and the reasoning behind them.
+
+▼Schema
+
+Field
+
+type
+
+Description
+
+id
+
+int
+
+price
+
+Int
+
+Unique ID corresponding to the vehicle
+
+maintenance_cost
+
+int
+
+Price of the vehicle
+
+Maintenance cost of the vehicle
+
+num_doors
+
+int
+
+Number of doors in the vehicle
+
+seating_capacity
+
+int
+
+Seating Capacity of the vehicle
+
+boot space
+
+int
+
+Boot space in the vehicle
+
+safety_level
+
+int
+
+Safety level of the vehicle
+
+outcome
+
+int
+
+The predicted sales volume (0 - low, 1-medium, 2- high, 3 - very high)
+
+Mem: 372 MiB/13 GiB CPU: 0%
+
+040
+
+
+
+
