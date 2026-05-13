@@ -1,0 +1,339 @@
+What you’ll do: 
+
+Collaborate with ZS internal teams and client teams to shape and implement high quality technology solutions that address critical business problems  
+Understand and analyze business problems thoroughly, and translate them into technical designs effectively  
+Design and implement technical features using best practices for the specific technology stack being used  
+Assist in the development phase of implementing technology solutions for client engagements, ensuring effective problem-solving  
+Apply appropriate development methodologies (e.g., agile, waterfall, system integrated testing, mid-development client reviews, embedded QA procedures, unit testing) to ensure successful and timely completion of projects  
+Provide guidance and support to team members in creating comprehensive project implementation plans  
+Work closely with a development team to accurately interpret and implement business requirements  
+ 
+
+What you’ll bring: 
+
+Bachelor's or Master's degree in Business Analytics, Computer Science, MIS or related field with academic excellence  
+Proficiency in RDBMS concepts, SQL, and programming languages such as Python 
+Strong analytical and problem-solving skills to convert intricate business requirements into technology solutions  
+Knowledge of algorithms and data structures  
+ 
+
+Additional Skills: 
+
+0-3+ years of relevant professional experience in delivering small/medium-scale technology solutions  
+Strong verbal and written communication skills to effectively convey results and issues to internal and client teams Familiarity with Big Data Concepts and Cloud Platforms like AWS, Azure, and Google Cloud Platform 
+Understanding of productivity tools such as co-pilot and SQL generation 
+Travel to other offices as required to collaborate with clients or internal project teams  
+
+
+
+
+
+\documentclass[a4paper,10pt]{article}
+
+%----------------------------------------------------------------------------------------
+% PACKAGES
+%----------------------------------------------------------------------------------------
+
+\usepackage{url}
+\usepackage{parskip}
+\RequirePackage{color}
+\RequirePackage{graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[scale=0.9]{geometry}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{supertabular}
+\usepackage{multirow}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{fontawesome5}
+
+% Compact Formatting
+\titleformat{\section}{\large\scshape\raggedright}{}{0em}{}[\titlerule]
+
+% Reduce Section Spacing
+\titlespacing{\section}{0pt}{8pt}{4pt}
+\titlespacing{\subsection}{0pt}{6pt}{3pt}
+
+%----------------------------------------------------------------------------------------
+% BEGIN DOCUMENT
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+\pagestyle{empty}
+
+%----------------------------------------------------------------------------------------
+% TITLE
+%----------------------------------------------------------------------------------------
+
+\begin{center}
+    {\Huge \textbf{Sameer Alam}} \\
+    \small
+    \href{https://github.com/sameer1098alam}{\faGithub\ sameer1098alam} \quad
+    \href{https://www.linkedin.com/in/sameer-alam-7a3a59215}{\faLinkedin\ Sameer Alam} \quad
+    \href{mailto:sameer10987alam@gmail.com}{\faEnvelope\ sameer10987alam@gmail.com} \quad
+    \href{tel:+918881344018}{\faMobile\ +91 8881344018}
+\end{center}
+
+
+
+%----------------------------------------------------------------------------------------
+% EDUCATION
+%----------------------------------------------------------------------------------------
+
+\section{Education}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+2021 - 2025 & \textbf{BTech Computer Science and Engineering}, SRM University AP \hfill (GPA: 8.13/10) \\
+2020 - 2021 & Class 12th, VidyaGyan School, Sitapur (CBSE) \hfill (87\%) \\
+2018 - 2019 & Class 10th, VidyaGyan School, Sitapur (CBSE) \hfill (92.8\%) \\
+\end{tabularx}
+
+%----------------------------------------------------------------------------------------
+% INTERNSHIPS
+%----------------------------------------------------------------------------------------
+
+\section{Internships}
+\textbf{Infosys Springboard} \quad \href{https://github.com/sameer1098alam/InfosysSpringboardFoodExpressApp}{GitHub} \hfill Nov 2024 - Jan 2025  
+\begin{itemize}[noitemsep, leftmargin=*]
+    \item Applied \textbf{MS Excel} and \textbf{SQL} for reporting, dashboards, and data-driven decision-making.
+    \item Supported business units through documentation and \textbf{data visualization}, contributing to project milestones.
+    \item Demonstrated \textbf{strong communication and teamwork}, working in a hybrid environment and collaborating cross-functionally.
+    \item Adapted quickly to new tools and managed productivity in rotational remote shifts with high efficiency.
+\end{itemize}
+
+\textbf{Salesforce Developer Intern, SmartBridge}\quad \href{https://drive.google.com/file/d/1ZgrqKp1PhArpqY-bKLBOR8sh_mfW2mdW/view?usp=sharing}{link} \hfill Jun 2023 - Aug 2023  
+\begin{itemize}[noitemsep, leftmargin=*]
+    \item Automated \textbf{business processes} using Salesforce Flows and Apex Triggers to reduce manual effort.
+    \item Used \textbf{MS Excel and SQL} for campaign performance analysis and reporting.
+    \item Coordinated with teams to refine technical solutions and improve \textbf{user engagement and marketing workflows}.
+    \item Developed a problem-solving mindset and enhanced \textbf{communication skills} while working under deadlines.
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+% PROJECTS
+%----------------------------------------------------------------------------------------
+
+\section{Projects}
+
+\textbf{Stock Market Dashboard} \quad \href{https://github.com/your-repo-link}{GitHub} \hfill Dec 2024 – Jan 2025  
+\begin{itemize}[noitemsep, leftmargin=*]
+    \item Created an interactive stock dashboard in \textbf{Excel} using pivot tables, charts, and conditional formatting.
+    \item Analyzed historical data to uncover trends, patterns, and sector performance.
+    \item Delivered \textbf{actionable insights} with company-wise comparisons for marketing relevance.
+    \item Automated key processes using macros to enhance usability and efficiency.
+\end{itemize}
+
+
+
+
+\textbf{Fashion Recommendation AI Chatbot} \quad \href{https://github.com/sameer1098alam/Fashion-Recommender-With-AI-Chatbot}{GitHub} \hfill Apr 2024 – May 2024  
+\begin{itemize}[noitemsep, leftmargin=*]
+    \item Developed a full-stack fashion recommendation system with an interactive AI chatbot using \textbf{ReactJS} (frontend) and \textbf{Django} (backend).
+    \item Integrated \textbf{Natural Language Processing (NLP)} for text-based queries and \textbf{ResNet50} for image-based fashion suggestions.
+    \item Built a custom fashion dataset through \textbf{web scraping} and exposed data via a \textbf{Django REST API}.
+    \item Conducted \textbf{content strategy analysis}, authored \textbf{BRDs}, and led \textbf{SWOT/GAP analysis} to align features with user needs.
+    
+\end{itemize}
+
+
+\textbf{Olympic Data Analysis using Microsoft Azure} 
+\href{https://github.com/sameer1098alam/Olympic-data-Analysis-using-Azure}{\texttt{[link]}} 
+\hfill \textit{Apr 2024 – May 2024}
+\begin{itemize}[noitemsep, leftmargin=*]
+    \item Built end-to-end data pipelines and dashboards with \textbf{Azure Data Factory, Data Lake, Synapse}.
+    \item Achieved real-time reporting on 25K+ records for event performance and media metrics.
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+% TECHNICAL SKILLS
+%----------------------------------------------------------------------------------------
+
+\section{Technical Skills}
+
+\begin{itemize}[noitemsep, leftmargin=*]
+    
+    \item {Programming Languages:}  C++, Python, MySQL,javascript , MS Excel
+    \item {Problem Solving:} Data Structures and Algorithms, Object-Oriented Programming, Operating System
+    
+    \item {Productivity Tools:} MS Excel, MS PowerPoint
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+% ACHIEVEMENTS
+%----------------------------------------------------------------------------------------
+
+\section{Achievements}
+\begin{itemize}[noitemsep, leftmargin=*]
+    
+    \item Certified in DBMS (\textbf{NPTEL Elite}), Power BI (\textbf{Coursera})
+    \item Designed digital content campaigns during internships with measurable engagement metrics
+\end{itemize}
+
+\textbf{Scholarship:} Awarded \textbf{SNF (Shiv Nadar Foundation)} \textbf{100\% full academic scholarship}.  
+\hline
+\end{document}
+
+
+
+
+
+
+
+
+\documentclass[a4paper,10pt]{article}
+
+%----------------------------------------------------------------------------------------
+% PACKAGES
+%----------------------------------------------------------------------------------------
+
+\usepackage{url}
+\usepackage{parskip}
+\RequirePackage{color}
+\RequirePackage{graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[scale=0.9]{geometry}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{supertabular}
+\usepackage{multirow}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{fontawesome5}
+
+% Compact Formatting
+\titleformat{\section}{\large\scshape\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{8pt}{4pt}
+\titlespacing{\subsection}{0pt}{6pt}{3pt}
+
+%----------------------------------------------------------------------------------------
+% BEGIN DOCUMENT
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+\pagestyle{empty}
+
+%----------------------------------------------------------------------------------------
+% TITLE
+%----------------------------------------------------------------------------------------
+
+\begin{center}
+    {\Huge \textbf{Sameer Alam}} \\
+    \small
+    \href{https://github.com/sameer1098alam}{\faGithub\ sameer1098alam} \quad
+    \href{https://www.linkedin.com/in/sameer-alam-7a3a59215}{\faLinkedin\ Sameer Alam} \quad
+    \href{mailto:sameer10987alam@gmail.com}{\faEnvelope\ sameer10987alam@gmail.com} \quad
+    \href{tel:+918881344018}{\faMobile\ +91 8881344018} \quad
+    \href{https://leetcode.com/u/sameer_alam/}{\faGlobe\ LeetCode}
+\end{center}
+
+%----------------------------------------------------------------------------------------
+% EDUCATION
+%----------------------------------------------------------------------------------------
+
+\section{Education}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+2021 -- 2025 & \textbf{BTech in Computer Science and Engineering}, SRM University AP \hfill (GPA: 8.24/10) \\
+2020 -- 2021 & Class 12 (CBSE), VidyaGyan School, Sitapur \hfill (87\%) \\
+2018 -- 2019 & Class 10 (CBSE), VidyaGyan School, Sitapur \hfill (92.8\%) \\
+\end{tabularx}
+
+%----------------------------------------------------------------------------------------
+% INTERNSHIPS
+%----------------------------------------------------------------------------------------
+
+\section{Internships}
+
+\textbf{Technology Apprentice, Standard Chartered GBS} \hfill \textit{Sep 2025 -- Present}
+\begin{itemize}[noitemsep, leftmargin=*]
+    \item Contributing to backend development using \textbf{Java}, \textbf{Spring Boot}, and \textbf{RESTful APIs} for scalable banking platforms.
+    \item Managing CI/CD pipelines and deployment workflows using \textbf{Azure DevOps (ADO)}, Git, and Maven.
+    \item Working with \textbf{SQL/PLSQL} for data management, query optimization, and enterprise system integration.
+    \item Enhancing system reliability through \textbf{unit testing}, automation and code reviews.
+    \item Collaborating in \textbf{Agile teams} to deliver high-availability applications in the \textbf{banking domain}.
+\end{itemize}
+
+\textbf{Full Stack Intern, Infosys Springboard (Certificate)} \hfill \textit{Nov 2024 -- Feb 2025} \\
+\textit{Tech: Java, JavaScript, CSS, MySQL, AWS EC2, AWS Elastic Beanstalk}
+\begin{itemize}[noitemsep, leftmargin=*]
+    \item Built a full-stack web application using \textbf{Java} (backend) and \textbf{JavaScript/CSS} for responsive UI.
+    \item Designed and integrated \textbf{RESTful APIs} with a \textbf{MySQL database} for secure user data persistence.
+    \item Improved application performance by writing optimized \textbf{SQL queries}.
+    \item Deployed application on \textbf{AWS EC2} and automated version rollouts via \textbf{AWS Elastic Beanstalk}.
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+% PROJECTS
+%----------------------------------------------------------------------------------------
+
+\section{Projects}
+
+\textbf{Loan Origination System – Maker–Checker Based Loan Platform} \hfill \textit{Sep 2025 -- Nov 2025}
+\begin{itemize}[noitemsep, leftmargin=*]
+    \item Built a secure backend using \textbf{Spring Boot} with \textbf{JWT-based authentication and authorization}.
+    \item Implemented a \textbf{Maker–Checker workflow} for loan application review and approval.
+    \item Developed a \textbf{React.js frontend} for seamless application submission and real-time tracking.
+    \item Integrated \textbf{PostgreSQL} ensuring data integrity and fast transaction processing.
+    \item Enabled automated customer communication for \textbf{loan approval/rejection notifications}.
+\end{itemize}
+
+\textbf{Fashion Recommendation AI Chatbot} \quad \href{https://github.com/sameer1098alam/Fashion-Recommender-With-AI-Chatbot}{GitHub} \hfill \textit{Apr 2024 -- May 2024}
+\begin{itemize}[noitemsep, leftmargin=*]
+    \item Developed a chatbot delivering personalized fashion suggestions using \textbf{Gemini AI}.
+    \item Created backend logic with custom \textbf{RESTful APIs} and MongoDB for user data handling.
+    \item Improved teamwork efficiency by following \textbf{Agile practices} and sprint ceremonies.
+\end{itemize}
+
+\textbf{Food Express – Online Food Ordering System} \quad \href{https://github.com/sameer1098alam/InfosysSpringboardFoodExpressApp}{GitHub} \hfill \textit{Dec 2024 -- Jan 2025}
+\begin{itemize}[noitemsep, leftmargin=*]
+    \item Built a scalable backend using \textbf{Spring Boot} and RESTful APIs for order and user management.
+    \item Implemented \textbf{Stripe API} for secure online payment processing.
+    \item Added \textbf{role-based access control (RBAC)} to safeguard admin-level operations.
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+% TECHNICAL SKILLS
+%----------------------------------------------------------------------------------------
+
+\section{Technical Skills}
+
+\textbf{Programming Languages:} Java, C++, JavaScript, SQL \\
+\textbf{Backend Technologies:} Spring Boot, RESTful APIs, JWT \\
+\textbf{Databases:} MySQL, PostgreSQL, MongoDB, PL/SQL \\
+\textbf{Tools & Platforms:} Azure DevOps (ADO), Git, Maven, AWS EC2, Agile, JUnit, Cloud Deployment, linux \\
+\textbf{Coursework:} Data Structures and Algorithms, Operating Systems, Cloud Computing
+
+%----------------------------------------------------------------------------------------
+% ACHIEVEMENTS
+%----------------------------------------------------------------------------------------
+
+\section{Achievements}
+\begin{itemize}[noitemsep, leftmargin=*]
+    \item Awarded \textbf{SNF (Shiv Nadar Foundation)} 100\% academic scholarship.
+\end{itemize}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
