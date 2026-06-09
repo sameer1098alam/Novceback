@@ -1,0 +1,352 @@
+A video streaming service delivers n numbered packets over time, Pacleats arrive continuously (not all at cricn) at a fled rate of arrival Rate packats per second, in the order lished by packets.
+
+The video player behaves as follows:
+
+Playback is 1 packet per second, in increasing packet number order, starting with packet 1 at time! L
+
+At each second t, the player must play packet t
+
+It can play it from the buffer, or
+
+Directly from the packets arriving at time t (if it is the first usable arrival that second).
+
+Any packet with a number greater than the most recently played packet may be stored in a buffer fo future use.
+
+Any packet that has already been played is discarded.
+
+Duplicate packets do not help and can be ignored.
+
+If multiple packets arrive at the same second:
+
+Only one packet is played that second (if possible).
+
+All remaining arriving packets are either buffered (if usable later) or ignored.
+
+Re-buffering starts at the first time t when packet t is not immediately available (neither already in the buffer nor available to play from the arriving packets at that second).
+
+Return the earliest time re-buffering begins. If playback never needs to re-buffer before the stream ends
+
+return -1
+
+Example
+
+arrivalRate = 2
+
+packets [1.2.3.4.4.51
+
+Packets played
+
+Buffer
+
+Packich
+
+received
+
+&
+
+hp
+
+144
+
+8
+
+9
+
+14
+
+
+Puckres played
+
+Buffer
+
+Packets received
+
+1
+
+2
+
+3
+
+4
+
+Time
+
+At time t = 1:
+
+Packets 1 and 2 are received
+
+Packet 1 is played
+
+Packet 2 is buffered
+
+At time 2
+
+Packet 2 is-played from the buffer
+
+Packets 3 and 4 are received and buffered
+
+At time 13:
+
+Packet 3 is played from the buffer
+
+A duplicate packet 4 is received and ignored
+
+Packet 5 is received and buffered
+
+The stream can continue to be played from the buffer, and there is no time at which a available whose number matches the time. Therefore, the return value is -1.
+
+hp
+
+144
+
+46
+
+&
+
+7
+
+
+
+Function Description
+
+Complete the timeOfBuffering function in the editor with the following parameter(s):
+
+int arrivalRate: the rate of arrival of packets
+
+int packets[n]: each packetslil denotes the packet number of the ith packet that arrives
+
+Returns
+
+int: the first time that re-buffering occurs or -1
+
+Constraints
+
+1≤ arrivalRate ≤ 50
+
+1 sns 106
+
+1 s packets[i] ≤ 106
+
+▼Input Format For Custom Testing
+
+The first line contains an integer, arrivalRate, denoting the rate of arrival of packets.
+
+The next line contains an integer, n. the size of packets.
+
+Each line i of the n subsequent lines (where Os i < n) contains an integer, packets(i).
+
+
+Sample Input For Custom Testing
+
+STDIN
+
+Function
+
+2
+
+arrivalRate 2
+
+8
+
+packets[] size n 8
+
+1
+
+packets [1, 3, 2, 1, 2, 3, 3, 4]
+
+3
+
+3
+
+4
+
+Sample Output
+
+4
+
+Explanation
+
+Packets played
+
+Buffer
+
+Packets received
+
+2
+
+3
+
+Tane
+
+As shown in the image:
+
+Packets 1 and 3 arrive beginning at 11: Packet 1 is played in the first second, and packet 3 is placed
+
+in the buffer
+
+hp
+
+
+As shown in the image:
+
+Packets 1 and 3 arrive beginning at t = 1: Packet 1 is played in the first second, and packet 3 is placed in the buffer. Packets 2 and 1 arrive beginning at t = 2 Packet 2 is played, and packet 1 is ignored. Packet 3
+
+remains in the buffer. Packets 2 and 3 arrive at t = 3 Packet 2 is ignored and packet 3 is played from the buffer. The
+
+duplicate packet 3 is then ignored. Packets 3 and 4 arrive at t = 4 Packet 3 is ignored, and packet 4 is not available in the buffer. Packet
+
+4 is required at time t = 4 but arrives after 3, so it is not available exactly at time 4. Hence, re-buffering occurs at time t = 4
+
+
+▼Sample Case 1
+
+Sample Input For Custom Testing
+
+STOIN
+
+1
+
+4
+
+1
+
+2
+
+3
+
+4
+
+Function
+
+arrivalRate 1
+
+packets[] size n. 2
+
+packets [1, 2, 3, 4]
+
+Sample Output
+
+-1
+
+Explanation
+
+Packets played
+
+Buffer
+
+Packets received
+
+2
+
+3
+
+Time
+
+3
+
+No buffering accurs in this case, as each packet is available from the stream when needed. At riel, packet lis required, and it is present as it just arrives at 1. The same reasoning is applied for packets 2. 3. and 4.
+
+hp
+
+
+Language
+
+Python 3
+
+1>
+
+#!/bin/python3...
+
+10
+
+11 #
+
+12
+
+#Complete the 'timeofBuffering' function below.
+
+13
+
+#
+
+14
+
+#The function is expected to return an INTEGER.
+
+15 #The function accepts following parameters:
+
+16
+
+#1. INTEGER arrivalRate
+
+17
+
+#2. INTEGER ARRAY packets
+
+18 #
+
+19
+
+20
+
+def timeofBuffering (arrivalRate, packets):
+
+21
+
+#Write your code here
+
+22
+
+23 if name main':
+
+24
+
+25
+
+26
+
+27
+
+28
+
+30
+
+32
+
+32
+
+33
+
+35
+
+36
+
+32
+
+38
+
+39
+
+40
+
+41
+
+fptr = open(os.environ['OUTPUT_PATH', 'w')
+
+arrivalRate = int(input().strip())
+
+packet's_count int(input().strip()).
+
+packets= []
+
+for in range(packets_count):
+
+packets_item int(input().strip())
+
+packets.append(packets_item)
+
+result = timeofBuffering (arrivalkate, packets)
+
+fptr.write(str(result) + '\n')
+
+fptr.close()
