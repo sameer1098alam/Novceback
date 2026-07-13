@@ -1,0 +1,158 @@
+Process REST API User Data and Calculate Average Age
+
+Medium
+
+Tags
+
+REST API
+
+Data Processing
+
+JSON
+
+Parsing
+
+Aggregation
+
+You are given JSON-formatted user data obtained from a REST API. The data consists of multiple user records, each with a name and age field. Your task is to process this data and compute the average age of all users whose ages are within a given inclusive range [min_age, max_age]
+
+The input is provided as a single JSON string (potentially spanning multiple lines) representing a list of user objects. You must parse this JSON, filter users whose age is between min_age and max_age (inclusive), and output the average age of these users as an integer (rounded down). If no users match the criteria, output e
+
+You may assume the JSON is always valid and properly formatted.
+
+Sample Explanation:
+
+Suppose the input JSON is:
+
+[{"name": "Alice", "age": 28}, {"name": "Bob", "age":35
+
+hp
+
+Te
+
+[{"name": "Alice", "age": 28}, {"name": "Bob", "age": 35}]
+
+and min_age = 25 max_age = 30.
+
+Only Alice's age (28) falls within the range. So, the output should be 28 (since the average of a single value is itself).
+
+Input Format
+
+The input consists of:
+
+A single integer min_age (1 ≤ min_age ≤ 150).
+
+A single integer max_age (min_age ≤ max_age ≤ 150).
+
+A single JSON string (may span multiple lines) representing a list of user records, where each record is a JSON object with string name and integer age fields.
+
+Output Format
+
+Output a single integer, the floor of the average age of users whose age is within the range [min_age, max_age]. Output 0 if no such users exist.
+
+Examples
+
+Example 1:
+
+Input:
+
+"Alice", "age": 28}, {"name": "Bob", "age": 35}]
+
+hplem 1 (1)
+
+() Coding Problem 2 (1)
+
+{} Coding Problem 3 (1)
+
+25
+
+30
+
+[{"name": "Alice", "age": 28}, {"name": "Bob", "age
+
+Output:
+
+28
+
+Example 2:
+
+Input:
+
+40
+
+50
+
+[{"name": "Alice", "age": 28}, {"name": "Bob", "aş
+
+Output:
+
+45
+
+Constraints
+
+1 ≤ min_age ≤ max_age ≤ 150 0 ≤ Number of users ≤ 105
+
+Each user: name is a non-empty string with at most 100 characters, age is an integer (1 ≤ age ≤ 150)
+
+Input JSON is valid and does not contain extra fields.
+
+
+1 import java.util.*;
+
+2. import java.io.*;
+
+
+
+3 import org.json.*;
+
+4 public class Main {
+
+5
+
+6
+
+public static void main(String[] args) throws Exception {
+
+BufferedReader br = new BufferedReader(new InputStreamReader
+
+(System.in));
+
+int min_age = Integer.parseInt(br.readLine());
+
+8
+
+int max_age = Integer.parseInt(br.readLine());
+
+9-
+
+StringBuilder sb = new StringBuilder();
+
+7
+
+10
+
+String line;
+
+11
+
+while ((line = br.readLine()) != null) {
+
+12
+
+sb.append(line.trim());
+
+13
+
+}
+
+14
+
+string users json = sb.toString();
+
+15
+
+System.out.println(solve(min_age, max_age, users_json));
+
+16
+
+}
