@@ -1,0 +1,65 @@
+Input:
+
+40
+
+11
+
+50
+
+12
+
+13
+
+[{"name": "Alice", "age": 28}, {"name": "Bob", "a
+
+14
+
+15
+
+16
+
+17
+
+Output:
+
+Test Cases
+
+45
+
+
+Input:
+
+28}, {"name": "Bob", "age" 41}, {"name": "Carol",
+
+14
+
+15
+
+16
+
+Output:
+
+Test Cases
+
+45
+
+
+Input:
+
+: "Carol", "age": 45}, {"name": "Dave", "age": 50}]
+
+13
+
+14
+
+15
+
+16
+
+17
+
+Output:
+
+Test Cases
+
+45
