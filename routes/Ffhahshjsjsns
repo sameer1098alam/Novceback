@@ -1,0 +1,87 @@
+Process REST API User Data and Calculate Average Age
+
+a and Cal...
+
+Medium
+
+2
+
+Larigusge
+
+Python
+
+1
+
+import s
+
+import
+
+3
+
+4
+
+Tags
+
+def sol
+
+REST API
+
+5
+
+6
+
+#
+
+Data Processing.
+
+JSON Parsing
+
+Aggregation
+
+7
+
+ra
+
+8
+
+9
+
+if
+
+10
+
+m
+
+11
+
+12
+
+13
+
+14
+
+15
+
+16
+
+17
+
+You are given JSON-formatted user data obtained from a REST API. The data consists of multiple user records, each with a name and age field. Your task is to process this data and compute the average age of all users whose ages are within a given inclusive range [min_age, max_age].
+
+The input is provided as a single JSON string (potentially spanning multiple lines) representing a list of user objects. You must parse this JSON, filter users whose age is between min_age and max_age (inclusive), and output the average age of these users as an integer (rounded down). If no users match the criteria, output e.
+
+Test Cases
+
+16
+
+You may, assume the JSON is always valid and properly formatted.
+
+Sample Explanation:
+
+Suppose the input JSON is:
+
+[{"name": "Alice", "age": 28), {"name": "Bob", "age": 35)]
+
+and min_age 25, max age 30.
+
+Only Alice's age (28) falls within the range. So, the output should be ae (since the suprane of a single value
