@@ -1,0 +1,295 @@
+ag Problem 1 (1)
+
+{} Coding Problem 2 (1)
+
+{} Coding Problem 3 (1)
+
+Top Customers by Monthly Purchase Amount
+
+Hard
+
+Tags
+
+SQL Backend Logic
+
+Aggregation
+
+Sorting
+
+Date Manipulation
+
+Hash Table
+
+Given a database of customer purchases, you must determine the top customer(s) by total purchase amount for each month. You are given:
+
+A list of purchases where each record consists of amount and date (formatted as customer_id YYYY-MM-DD).
+
+Your task is to, for each month present in the data, output the customer_id and total_amount for the customer(s) with the highest total purchase amount in that month. If there are multiple customers tied for the highest amount in a month, output all of them (one per line, sorted by customer_id ascending).
+
+Sample Explanation:
+
+Suppose the purchases are:
+
+hp
+customer_id ascending).
+
+Sample Explanation:
+
+Suppose the purchases are:
+
+3
+
+1 100 2023-03-15
+
+2 150
+
+2023-03-16
+
+1 50 2023-03-18
+
+For March 2023, customer 2 has a total of 150, customer 1 has a total of 150. Both are top customers for that month.
+
+The output should be:
+
+2023-03 1
+
+150
+
+2023-03 2
+
+150
+
+Input Format
+
+The first line contains an integer n (number of purchases).
+
+Each of the next n lines contains: customer_id (positive integer). amount (integer ≥ 0), and date (YYYY-MM-DD).
+
+Output Format
+
+For each month (in chronological order), output one line per top customer:
+
+Problem 1 (1)
+
+{} Coding Problem 2 (1)
+
+{} Coding Problem 3 (1)
+
+Output Format
+
+For each month (in chronological order), output one line per top customer:
+
+YYYY-MM customer id total_amount
+
+If multiple customers tie, output them sorted by customer_id ascending.
+
+Months with no purchases should not appear in the output.
+
+Examples
+
+Example 1:
+
+Input:
+
+3
+
+1 100 2023-03-15
+
+2 150 2023-03-16
+
+1 50 2023-03-18
+
+Output:
+
+2023-03
+
+1 150
+
+2023-03 2 150
+
+Example 2:
+
+Input:
+
+5
+
+1 100 2023-01-01
+
+hp
+
+σαιμαι.
+
+2023-03 1
+
+150
+
+2023-03 2
+
+150
+
+Example 2:
+
+Input:
+
+5
+
+1 100
+
+2023-01-01
+
+2 50 2023-01-02
+
+1 200 2023-02-01
+
+2 200 2023-02-02
+
+3 200 2023-02-05
+
+Output:
+
+2023-01
+
+1 100
+
+2023-02
+
+1 200
+
+2023-02
+
+2 200
+
+2023-02
+
+3 200
+
+Constraints
+
+1.≤ n ≤ 105
+
+1 ≤ customer_id ≤ 106
+
+0≤ amount ≤ 109
+
+Dates are valid and range from 2000-01-01 to 2099-12-31
+
+hp
+
+
+hp
+3
+
+public class Main {
+
+4
+
+5
+
+public static void main(String[] args) {
+
+Scanner scanner = new Scanner(System.in);
+
+int n = Integer.parseInt(scanner.nextLine());
+
+6
+
+7
+
+List<Purchase> purchases = new ArrayList<>();
+
+for (int i = 0; i < n; i++) {
+
+8
+
+String[] parts = scanner.nextLine().trim().split(" ");
+
+9
+
+int customerId = Integer.parseInt(parts[0]);
+
+10
+
+int amount = Integer.parseInt(parts[1]);
+
+11
+
+String date = parts[2];
+
+12
+
+purchases.add(new Purchase (customerId, amount, date));
+
+13
+
+}
+
+List<String> result = solve(n, purchases);
+
+14
+
+if (result != null && !result.isEmpty()) {
+
+15
+
+for (String line : result) {
+
+16
+
+System.out.println(line);
+
+17
+
+
+3
+
+public static void main(String[] args) {
+
+15
+
+if (result != null && !result.isEmpty()) { for (String line : result) {
+
+}
+
+16
+
+18-
+
+19
+
+20
+
+}
+
+21
+
+static class Purchase {
+
+22
+
+int customerId, amount; String date;
+
+23
+
+Purchase(int c, int a, String d) { customerId = c; amount = a;
+
+24
+
+date = d; }
+
+}
+
+25
+
+public static List<String> solve(int n, List<Purchase> purchases) {
+
+26
+
+// TODO: implement only this function
+
+27
+
+throw new UnsupportedOperationException("Unimplemented");
+
+28
+
+}
