@@ -1,0 +1,342 @@
+1hr 19 min
+
+Question 1
+
+As part of HackerPay's billing analytics, a team need a list of all the IBAN codes that are under monitoring and participate in two or more completed transactions within any 24 hour interval.. completed transaction is one where transactions.completed = "yes".
+
+The results should be in the following format: sender, sequences lengths, sequences_total.
+
+sender is the IBAN code.
+
+⚫ sequences lengths is a comma-separated list of sequences length for a particular IBAN co ordered by sequence length descending.
+
+⚫ sequences total is a total of all the transactions in all the sequences for a particular IBAN c
+
+Results should be sorted by sequence_total descending.
+
+▼Schema
+
+There are 2 tables:
+
+transactions
+
+name
+
+type
+
+description
+
+VARCHAR(19)
+
+Transaction timestamp
+
+sender
+
+VARCHAR(64)
+
+Sender IBAN
+
+amount
+
+DECIMAL(5,2)
+
+Transaction amount
+
+completed
+
+VARCHAR(64)
+
+Completion status
+
+monitor
+
+name type
+
+iben
+
+VARCHAR(64)
+
+description
+
+Sender IBAN
+1hr 19 min
+
+monitor
+
+name
+
+type
+
+description
+
+iban
+
+VARCHAR(64)
+
+Sender IBAN
+
+Sample Data Tables
+
+For the sample data in tables:
+
+transactions
+
+sender
+
+amount
+
+complete
+
+2021-12-01 01:52:20
+
+AE86 7126 7286 8713 0806 517
+
+8.86
+
+yes
+
+2021-12-05 01:42:52
+
+AE86 7126 7286 8713 0806 617
+
+36.16
+
+yes
+
+2021-12-05 08:03:23
+
+AE86 7126 7286 8713 0806 517
+
+29.44
+
+yes
+
+2021-12-09 07:37:34
+
+AE86 7126 7286 8713 0806 517
+
+7.19
+
+yes
+
+2021-12-09 14:25:36
+
+AE86 7126 7286 8713 0806 517
+
+53.03
+
+yes
+
+2021-12-09 22:16:54
+
+AE86 7126 7286 8713 0806 517
+
+29.66
+
+yes
+
+2021-12-01 02:21:22
+
+BH04 RZOT KF3R OIBX TPZV ZS
+
+5.91
+
+yes
+
+2021-12-09 00:52:13
+
+BH04 RZOT KF3R OIBX TPZV ZS
+
+92.07
+
+yes
+
+2021-12-03 09:31:30
+
+FR58 5866 6355 884Q AT6C XESE U02
+
+18.08
+
+yes
+
+2021-12-02 07:36:06
+
+LT72 3718 1977 2128 2888
+
+65.87
+
+yes
+
+2021-12-02 19:35:09
+
+LT72 3718 1977 2128 2888
+
+46.79
+
+yes
+
+40
+
+17
+
+4-
+
+4+
+
+
+1hr 18 min
+
+2021-12-03 09:31:30
+
+FR58 5866 6355 884Q AT6C XESE U02
+
+18.08
+
+yes
+
+2021-12-02 07:36:06
+
+LT72 3718 1977 2128 2888
+
+65.87
+
+yes
+
+2021-12-02 19:35:09
+
+LT72 3718 1977 2128 2888
+
+46.79
+
+yes
+
+2021-12-06 15:59:11
+
+MU61 DLYT 1493 0120 0101 0602 157P DN
+
+94.74
+
+yes
+
+2021-12-07 16:46:24
+
+MU61 DLYT 1493 0120 01010602 157P DN
+
+56.66
+
+yes
+
+2021-12-09 19:18:10
+
+MU61 DLYT 1493 0120 01010602 157P DN
+
+26.28
+
+yes
+
+2021-12-04 00:38:10
+
+AE86 7126 7286 8713 0806 517
+
+73.63
+
+no
+
+2021-12-08 04:36:49
+
+BH04 RZOT KF3R OIBX TPZV ZS
+
+18.30
+
+no
+
+2021-12-06 23:40:06
+
+FR58 5866 6355 884Q AT6C XESE U02
+
+31.46
+
+no
+
+2021-12-01 13:08:35
+
+MU61 DLYT 1493 0120 0101 0602 157P DN A
+
+4.16
+
+2021-12-06 11:27:04
+
+MU61 DLYT 1493 0120 0101 0602 157P DN
+
+80.53
+
+2021-12-09 20:18:42
+
+S137 5069 7230 7377 384
+
+no
+
+no
+
+96.93
+
+no
+
+monitor
+
+iben
+
+AE86 7126 7286 8713 0806 517
+
+MU61 DLYT 1493 0120 0101 0602 157P DN
+
+16
+
+46
+
+17
+
+
+6
+
+&
+
+7
+
+2021-12-09 20:18:42
+
+SI37 5069 7230 7377 384
+
+no
+
+96.93
+
+no
+
+monitor
+
+iban
+
+AE86 7126 7286 8713 0806
+
+517
+
+MU61 DLYT 1493 0120 0101 0602 157P DN
+
+The expected output is:
+
+sender
+
+sequences_lengths
+
+sequences_total
+
+▼
+
+AE86 7126 7286 8713 0806 517
+
+3,2
+
+155.48
+
+Test Results
